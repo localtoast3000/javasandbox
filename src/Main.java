@@ -8,6 +8,12 @@ public class Main {
         list.push(new Node("I am the fourth element"));
         list.push(new Node("I am the tail element"));
 
-        System.out.println(list);
+        list.traverse((node) -> {
+            if(node.getIdx() == 2){
+                node.setData(123456);
+            }
+        });
+
+        System.out.println(list.getNodeAtIdx(2).getData());
     }
 }
