@@ -7,43 +7,43 @@ public class LinkedList {
     private Node head;
     private Node tail;
 
-    public LinkedList(Node node){
+    public LinkedList(Node node) {
         incrementLength();
         node.setIdx(length - 1);
         this.head = node;
         this.tail = node;
     }
 
-    public Node getHead(){
+    public Node getHead() {
         return this.head;
     }
 
-    public Node getTail(){
+    public Node getTail() {
         return this.tail;
     }
 
-    public int getLength(){
+    public int getLength() {
         return length;
     }
 
-    public Node getNodeAtIdx(int idx){
+    public Node getNodeAtIdx(int idx) {
         final Node[] nodeAtIdx = new Node[1];
         nodeAtIdx[0] = null;
 
         traverse((node) -> {
-            if(node.getIdx() == idx){
-                nodeAtIdx[0] = node; 
+            if (node.getIdx() == idx) {
+                nodeAtIdx[0] = node;
             }
         });
 
         return nodeAtIdx[0];
     }
 
-    public void push(Node node){
+    public void push(Node node) {
         if (node == null) {
             throw new Error("Invalid node");
         }
-        
+
         if (this.tail == null) {
             this.length = 1;
             node.setIdx(0);
@@ -60,36 +60,36 @@ public class LinkedList {
     public Node pop() {
         final Node[] lastNode = new Node[1];
         lastNode[0] = null;
-    
+
         traverse((node) -> {
-            if(length == 1){
+            if (length == 1) {
                 lastNode[0] = node;
                 this.head = null;
                 this.tail = null;
-            }
-            else if (node.getIdx() == length - 2) {
+            } else if (node.getIdx() == length - 2) {
                 lastNode[0] = node.getNext();
                 this.tail = node;
                 node.setNext(null);
             }
         });
         decrementLength();
-    
+
         return lastNode[0];
     }
 
-    public void traverse(Consumer<Node> cb){
+    public void traverse(Consumer<Node> cb) {
         Node current = this.head;
-        while(current != null){
+        while (current != null) {
             cb.accept(current);
             current = current.getNext();
         }
     }
 
-    private void incrementLength(){
+    private void incrementLength() {
         this.length = this.length + 1;
     }
-    private void decrementLength(){
+
+    private void decrementLength() {
         this.length = this.length - 1;
     }
 
