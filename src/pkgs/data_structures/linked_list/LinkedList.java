@@ -46,7 +46,7 @@ public class LinkedList {
         
         if (this.tail == null) {
             this.length = 1;
-            node.setIdx(length - 1);
+            node.setIdx(0);
             this.head = node;
             this.tail = node;
         } else {
